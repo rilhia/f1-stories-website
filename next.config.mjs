@@ -7,6 +7,10 @@ const nextConfig = {
 		STORYBLOK_API_BASE_URL: process.env.STORYBLOK_API_BASE_URL,
 		STORYBLOK_REGION: process.env.STORYBLOK_REGION,
 	},
+	// Race and hero images are served from Storyblok's asset CDN.
+	images: {
+		remotePatterns: [{ protocol: 'https', hostname: 'a.storyblok.com' }],
+	},
 };
 
 export default nextConfig;
