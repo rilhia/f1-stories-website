@@ -21,7 +21,6 @@ const Race = ({ blok }) => (
 						className="race-hero__image"
 					/>
 				) : null}
-				<div className="race-hero__shade" />
 			</div>
 			<div className="container race-hero__content">
 				<Link href="/#races" className="back-link">

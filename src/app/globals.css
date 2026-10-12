@@ -142,6 +142,7 @@ img {
 
 .hero__image {
   object-fit: cover;
+  object-position: 80% center;
 }
 
 .hero__shade {
@@ -329,62 +330,29 @@ code {
 
 /* Race page */
 .race-hero {
-  position: relative;
-  min-height: clamp(300px, 48vh, 500px);
-  display: flex;
-  align-items: flex-end;
-  overflow: hidden;
-  background: linear-gradient(135deg, #1d1d29 0%, #101017 60%);
+  display: block;
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
 }
 
+/* The whole 16:9 illustration is always shown, never cropped, on every screen size */
 .race-hero__media {
-  position: absolute;
-  inset: 0;
+  position: relative;
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  aspect-ratio: 16 / 9;
+  max-height: calc(100vh - 140px);
 }
 
 .race-hero__image {
-  object-fit: cover;
-}
-
-.race-hero__shade {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, var(--bg) 0%, rgba(16, 16, 23, 0.5) 55%, rgba(16, 16, 23, 0.15) 100%);
+  object-fit: contain;
 }
 
 .race-hero__content {
   position: relative;
-  padding-top: 3rem;
+  padding-top: 1.75rem;
   padding-bottom: 2rem;
-}
-
-/* On phones, show the whole 16:9 illustration instead of cropping it */
-@media (max-width: 639px) {
-  .race-hero {
-    display: block;
-    min-height: 0;
-    background: var(--bg);
-  }
-
-  .race-hero__media {
-    position: relative;
-    inset: auto;
-    width: 100%;
-    aspect-ratio: 16 / 9;
-  }
-
-  .race-hero__image {
-    object-fit: contain;
-  }
-
-  .race-hero__shade {
-    background: linear-gradient(to top, var(--bg) 0%, rgba(16, 16, 23, 0) 20%);
-  }
-
-  .race-hero__content {
-    padding-top: 1rem;
-    padding-bottom: 1.5rem;
-  }
 }
 
 .back-link {
