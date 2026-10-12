@@ -337,8 +337,38 @@ code {
   background: linear-gradient(135deg, #1d1d29 0%, #101017 60%);
 }
 
+.race-hero__media {
+  position: absolute;
+  inset: 0;
+}
+
 .race-hero__image {
   object-fit: cover;
+}
+
+/* On phones, show the whole 16:9 illustration instead of cropping it, so the circuit stays visible */
+@media (max-width: 639px) {
+  .race-hero {
+    display: block;
+    min-height: 0;
+    background: var(--bg);
+  }
+
+  .race-hero__media {
+    position: relative;
+    inset: auto;
+    aspect-ratio: 16 / 9;
+    width: 100%;
+  }
+
+  .race-hero__shade {
+    background: linear-gradient(to top, var(--bg) 0%, rgba(16, 16, 23, 0) 25%);
+  }
+
+  .race-hero__content {
+    padding-top: 1rem;
+    padding-bottom: 1.5rem;
+  }
 }
 
 .race-hero__shade {
