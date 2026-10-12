@@ -102,4 +102,4 @@ src/lib/format.js         date and time formatting
 
 ## How this was built
 
-The Storyblok content model, the Next.js code, the race content and the illustrations were created with Claude Code. Content was created and published in the space through the Storyblok Management API, and the illustrations were generated with scripts and uploaded as assets.
+This project was built using Claude with the Storyblok MCP server. Through the Storyblok MCP, Claude created the content model, created and published the race stories and the Home story, and uploaded the illustrations to the asset library. Claude Code was used to write the Next.js code.
