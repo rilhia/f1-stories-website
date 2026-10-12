@@ -335,18 +335,11 @@ code {
   border-bottom: 1px solid var(--line);
 }
 
-/* The whole 16:9 illustration is always shown, never cropped, on every screen size */
-.race-hero__media {
-  position: relative;
-  width: 100%;
-  max-width: 1280px;
-  margin: 0 auto;
-  aspect-ratio: 16 / 9;
-  max-height: calc(100vh - 140px);
-}
-
+/* The image is a normal block at the top: full width, natural height, nothing overlaid */
 .race-hero__image {
-  object-fit: contain;
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 .race-hero__content {

@@ -10,18 +10,17 @@ import ResultsTable from './ResultsTable';
 const Race = ({ blok }) => (
 	<article {...storyblokEditable(blok)}>
 		<section className="race-hero">
-			<div className="race-hero__media">
-				{blok.image?.filename ? (
-					<Image
-						src={blok.image.filename}
-						alt={blok.image.alt || ''}
-						fill
-						priority
-						sizes="100vw"
-						className="race-hero__image"
-					/>
-				) : null}
-			</div>
+			{blok.image?.filename ? (
+				<Image
+					src={blok.image.filename}
+					alt={blok.image.alt || ''}
+					width={1600}
+					height={900}
+					priority
+					sizes="100vw"
+					className="race-hero__image"
+				/>
+			) : null}
 			<div className="container race-hero__content">
 				<Link href="/#races" className="back-link">
 					All races
