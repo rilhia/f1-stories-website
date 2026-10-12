@@ -329,23 +329,23 @@ code {
 }
 
 /* Race page */
-.race-hero {
-  display: block;
-  background: var(--bg);
-  border-bottom: 1px solid var(--line);
+.race-page {
+  max-width: 880px;
+  padding-top: 1.5rem;
+  padding-bottom: 5rem;
 }
 
-/* The image is a normal block at the top: full width, natural height, nothing overlaid */
-.race-hero__image {
+/* The illustration sits at the top, inside the same margins as the content, uncropped and with nothing on top of it */
+.race-image {
   display: block;
   width: 100%;
   height: auto;
+  border: 1px solid var(--line);
+  border-radius: 6px;
 }
 
-.race-hero__content {
-  position: relative;
-  padding-top: 1.75rem;
-  padding-bottom: 2rem;
+.race-header {
+  padding: 1.75rem 0 2rem;
 }
 
 .back-link {
@@ -367,7 +367,7 @@ code {
   color: var(--text);
 }
 
-.race-hero__title {
+.race-title {
   font-family: var(--display);
   font-weight: 800;
   text-transform: uppercase;
@@ -376,7 +376,7 @@ code {
   margin: 0 0 0.75rem;
 }
 
-.race-hero__meta {
+.race-meta {
   display: flex;
   flex-wrap: wrap;
   gap: 0.25rem 1rem;
@@ -385,19 +385,9 @@ code {
   color: #dcdce4;
 }
 
-.race-hero__time {
+.race-time {
   font-weight: 700;
   color: #fff;
-}
-
-.race-content,
-.race-hero__content {
-  max-width: 880px;
-}
-
-.race-content {
-  padding-top: 2.5rem;
-  padding-bottom: 5rem;
 }
 
 .richtext {

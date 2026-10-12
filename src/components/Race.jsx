@@ -9,7 +9,7 @@ import ResultsTable from './ResultsTable';
 
 const Race = ({ blok }) => (
 	<article {...storyblokEditable(blok)}>
-		<section className="race-hero">
+		<div className="container race-page">
 			{blok.image?.filename ? (
 				<Image
 					src={blok.image.filename}
@@ -17,25 +17,24 @@ const Race = ({ blok }) => (
 					width={1600}
 					height={900}
 					priority
-					sizes="100vw"
-					className="race-hero__image"
+					sizes="(min-width: 920px) 880px, 100vw"
+					className="race-image"
 				/>
 			) : null}
-			<div className="container race-hero__content">
+
+			<header className="race-header">
 				<Link href="/#races" className="back-link">
 					All races
 				</Link>
-				<h1 className="race-hero__title">{blok.name}</h1>
-				<p className="race-hero__meta">
+				<h1 className="race-title">{blok.name}</h1>
+				<p className="race-meta">
 					<span>{formatRaceDate(blok.date_time)}</span>
-					<span className="race-hero__time">
+					<span className="race-time">
 						{formatRaceTime(blok.date_time)}
 					</span>
 				</p>
-			</div>
-		</section>
+			</header>
 
-		<div className="container race-content">
 			{blok.body ? (
 				<div className="richtext">
 					<StoryblokServerRichText document={blok.body} />
