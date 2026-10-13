@@ -24,6 +24,11 @@ Built with Next.js (App Router) and `@storyblok/react`, with all content held in
   - [3. Run it](#3-run-it)
   - [4. Read the blocks in the Storyblok UI](#4-read-the-blocks-in-the-storyblok-ui)
   - [Next step](#next-step)
+- [What my AI assistant got wrong with Storyblok](#what-my-ai-assistant-got-wrong-with-storyblok)
+  - [Where the setup advice went wrong](#where-the-setup-advice-went-wrong)
+  - [The Blueprint route to Vercel](#the-blueprint-route-to-vercel)
+  - [Why I was rushing](#why-i-was-rushing)
+  - [Another way of using AI to solve these setup issues: a member of support prompt](#another-way-of-using-ai-to-solve-these-setup-issues-a-member-of-support-prompt)
 
 ## What is in the demo
 
@@ -162,3 +167,48 @@ I didn't even need to write the stories for this F1 Stories site. I told Claude 
 Sources:
 - [Storyblok MCP Server](https://storyblok.com/docs/libraries/mcp-server)
 - [Storyblok MCP Server setup](https://www.storyblok.com/docs/tooling/mcp-server/setup)
+
+## What my AI assistant got wrong with Storyblok
+
+My honest finding is that the Storyblok MCP work was pretty solid. Everything my AI assistant did using the MCP worked as expected. Where the content it created was not right, the fault was in my instructions. The track images are an example. They needed redoing, but that was a gap in the prompt, not a problem with how it worked with Storyblok. I was really quite impressed with how easy building with Storyblok was using the MCP. It really impressed me that story content could be built with a single prompt.
+
+Where Claude and Gemini did get Storyblok wrong was in explaining how to set things up. That meant advice on auth tokens, enabling the Visual Editor and the configuration a project needs before you start building. This is where more is needed.
+
+### Where the setup advice went wrong
+
+- **The Visual Editor.** I could just not get this working. I spent a good 30 minutes working through steps to get this going. In the end, after trying an awful lot of methods, I had to turn off the Vercel authentication. Both Claude and Gemini took me through every step imaginable before we got to this one. It did finally work, but I have no idea what steps I took were not actually necessary. There was also an issue with several layout fixes appearing to do nothing. This turned out to be due to me setting the Visual Editor up against the preview link and not the production link. The fix was to point **Settings** > **Visual Editor** at the stable production domain, not a single deployment's address.
+- **Auth tokens and general configuration.** Neither Claude nor Gemini was able to alert me to everything I needed to know. It's a common issue with LLMs in that they can get you 90% of the way, but the missing 10% can sometimes be the blocker.
+
+### The Blueprint route to Vercel
+
+This one was not the AI's fault, but it was the biggest setup problem of the whole build, and the AI could not help with it. I tried both Gemini and Claude.
+
+Storyblok's Blueprint route links your space to (in this case) a Vercel project. Every time I reached the GitHub step, I got this message, even though I had completed every step I was given:
+
+> Failed to link rilhia/f1-stories-website. You need to add a Login Connection to your GitHub account first.
+
+I decided to fix it by creating the project in Vercel manually. That led to a different error:
+
+> A project with this name already exists
+
+When I renamed the project to get around that, the original "Failed to link" message came straight back.
+
+I could not escape the Blueprint route either. Once it had started, I had to finish it. After about an hour of trying different things, deleting projects and starting again, it worked. I am honestly not sure what changed. I recorded the whole process, so I can go back to the video at some point in the future and work out why.
+
+The Blueprint route offered by the Storyblok UI does not give enough information or alternative routes to enable an easy fix for a brand new user trying to get started.
+
+### Why I was rushing
+
+I suspect I would not have had so many configuration problems if I had not felt rushed to get through this. I was working to a time target that was incredibly tight given the deliverables, and I suspect that had I spent more time reading around the configuration requirements, I would actually have done this quicker. Setup is where haste costs the most, because a wrong setting does not fail loudly. It just makes everything after it look broken.
+
+### Another way of using AI to solve these setup issues: a member of support prompt
+
+The way people work has shifted. If you can talk through a setup with an AI assistant, many people will choose that over reading the docs. I have been using this approach for several products I have built over the last few months, and it suits long and complicated setup steps very well. One example is this [helper prompt for prompt-track-mcp](https://github.com/rilhia/prompt-track-mcp/blob/main/docs/llm-helper-prompt.txt). I gave this prompt to my partner (who is not technical at all) to get her to test this install. She found it super useful.
+
+The idea is simple. Instead of leaving the assistant to answer setup questions from its training and documents it finds while researching, you give it a prompt that holds the product's correct steps, its settings and the common mistakes. The prompt tells the assistant to act as a member of support. It takes the user through the process step by step, in order, using a question and answer mechanism until the setup is finished.
+
+As the user configures, they give the LLM the information it will request. That might be which space they are using, which region it is in, what a screen or error message says, paths, environment settings, etc. The assistant combines that with the information in the prompt and gives a detailed explanation of what to do and why.
+
+That is the problem I hit with the Visual Editor. I still have no idea which of the steps I tried were actually necessary. A prompt to guide me through, step by step, could have told me what I needed to do and why.
+
+Adding a variety of prompts to the MCP which can be discovered by new users as they ask their AI assistant questions about their configuration would be a really nice touch.
