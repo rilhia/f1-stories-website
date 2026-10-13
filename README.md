@@ -6,6 +6,25 @@ A website that keeps a race by race record of the 2026 Formula 1 season. The fro
 
 Built with Next.js (App Router) and `@storyblok/react`, with all content held in Storyblok and the site deployed on Vercel.
 
+## Table of contents
+
+- [What is in the demo](#what-is-in-the-demo)
+- [How it works](#how-it-works)
+- [Storyblok content model](#storyblok-content-model)
+- [The illustrations](#the-illustrations)
+- [Getting started locally](#getting-started-locally)
+- [Environment variables](#environment-variables)
+- [Deploying to Vercel](#deploying-to-vercel)
+  - [Pointing the Visual Editor at the right URL](#pointing-the-visual-editor-at-the-right-url)
+- [Project layout](#project-layout)
+- [How this was built](#how-this-was-built)
+- [Getting started with Storyblok using Claude and the Storyblok MCP](#getting-started-with-storyblok-using-claude-and-the-storyblok-mcp)
+  - [1. Connect the MCP to Claude](#1-connect-the-mcp-to-claude)
+  - [2. Write the prompt](#2-write-the-prompt)
+  - [3. Run it](#3-run-it)
+  - [4. Read the blocks in the Storyblok UI](#4-read-the-blocks-in-the-storyblok-ui)
+  - [Next step](#next-step)
+
 ## What is in the demo
 
 - A front page with a hero illustration, a short intro and a grid of every race that has taken place.
@@ -103,3 +122,43 @@ src/lib/format.js         date and time formatting
 ## How this was built
 
 This project was built using Claude with the Storyblok MCP server. Through the Storyblok MCP, Claude created the content model, created and published the race stories and the Home story, and uploaded the illustrations to the asset library. Claude Code was used to write the Next.js code.
+
+## Getting started with Storyblok using Claude and the Storyblok MCP
+
+You're new to a product, maybe new to the domain too, and you need a POC quickly. We've all been there. Traditionally that meant A LOT of reading, multiple "Hello World" examples and a very late and incredibly frustrating night, with the evidence on your forehead from slamming it on the desk when every example you followed word for word failed because sleep-degraded typing added a rogue semicolon.
+
+It doesn't need to be that way with Storyblok. With Storyblok's MCP server, you can describe a content model in plain English and an assistant like Claude will build it in your space. This mini tutorial takes you from a blank space to inspecting the finished blocks, and you don't even need to know what blocks are before you start 😉
+
+### 1. Connect the MCP to Claude
+
+The easiest and quickest way to connect an AI assistant is to use Claude's connector. If you're interested in using this MCP server with a local model, for example, that can be done too. I will cover that in more detail in another tutorial.
+
+**OAuth (recommended).** In Claude, go to **Settings → Connectors**, choose **Discover**, type "Storyblok" and select **Connect**. This will launch Storyblok in your browser. Sign in, then pick the permissions and spaces Claude may use.
+
+### 2. Write the prompt
+
+First, what is a block? A block is a Storyblok building piece, a named set of fields such as text, an image or a date. A **content type** block is a whole page, like a "Race Detail Page". A **nestable** block lives inside a page, like a "Race Result" row holding a position, driver and team. A page can restrict which nestable blocks it accepts.
+
+I'd recommend starting in a chat tool such as Google Gemini. Describe the site you want in plain English, for example "a site listing F1 races, each with a results table", and say you want a content model for it in a Storyblok space. Ask it to turn that into a precise prompt that lists every block and its fields, then paste that prompt into Claude.
+
+### 3. Run it
+
+Paste the prompt into Claude with the Storyblok connector enabled. Claude uses the MCP to build the blocks you described. It takes a few minutes, so go and grab yourself a coffee while this is ticking over. Just keep an eye out for approval requests.
+
+### 4. Read the blocks in the Storyblok UI
+
+Open your space in [Storyblok](https://app.storyblok.com/) and select **Block Library** in the left-hand menu. Every block from your prompt should be listed. Open one and really drill into each of the blocks and all of the options. See how the blocks are interlinked and get an understanding of their hierarchy.
+
+If anything doesn't match your prompt, tell Claude what's wrong and ask it to fix it.
+
+### Next step
+
+You'll need to build your site's code. You may be comfortable with React and Next.js, but not sure how you can work with Storyblok. Guess what? Claude can help you there as well.
+
+Life is SO much easier these days.
+
+I didn't even need to write the stories for this F1 Stories site. I told Claude what I wanted and got it to churn out a story for every race of the season so far. Of course, I am not advocating that you do that. I think it is best to keep a human in the storytelling loop.
+
+Sources:
+- [Storyblok MCP Server](https://storyblok.com/docs/libraries/mcp-server)
+- [Storyblok MCP Server setup](https://www.storyblok.com/docs/tooling/mcp-server/setup)
